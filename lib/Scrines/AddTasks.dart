@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AddTasks extends StatelessWidget {
-  const AddTasks({super.key});
+  final Function addTaskColback;
+  const AddTasks(this.addTaskColback);
 
   @override
   Widget build(BuildContext context) {
+    String? newTitelText;
     return Container(
       padding: EdgeInsets.all(30),
       child: Column(
@@ -16,10 +18,12 @@ class AddTasks extends StatelessWidget {
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 236, 131, 46))),
-          const TextField(
-            autofocus: true,
-            textAlign: TextAlign.center,
-          ),
+          TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+              onChanged: (newText) {
+                newTitelText = newText;
+              }),
           SizedBox(
             height: 10,
           ),
@@ -27,7 +31,9 @@ class AddTasks extends StatelessWidget {
             style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Color.fromARGB(255, 247, 164, 96)),
-            onPressed: null,
+            onPressed: () {
+              addTaskColback(newTitelText);
+            },
             child: Text('data'),
           )
         ],

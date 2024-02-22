@@ -30,7 +30,12 @@ class _TackScrineState extends State<TackScrine> {
           showModalBottomSheet(
               context: context,
               builder: (context) => Container(
-                    child: AddTasks(),
+                    child: AddTasks((newTitelText) {
+                      setState(() {
+                        tasks.add(Task(name: newTitelText));
+                        Navigator.pop(context);
+                      });
+                    }),
                   ));
         },
         backgroundColor: Color.fromARGB(255, 247, 164, 96),
@@ -61,9 +66,9 @@ class _TackScrineState extends State<TackScrine> {
                 )
               ],
             ),
-            const Text(
-              "4 Tasks",
-              style: TextStyle(
+            Text(
+              "${tasks.length} Tasks",
+              style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.normal),
