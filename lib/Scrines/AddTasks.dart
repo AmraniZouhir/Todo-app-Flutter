@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/Models/TasksData.dart';
 
 class AddTasks extends StatelessWidget {
   final Function addTaskColback;
@@ -32,7 +34,9 @@ class AddTasks extends StatelessWidget {
                 foregroundColor: Colors.white,
                 backgroundColor: Color.fromARGB(255, 247, 164, 96)),
             onPressed: () {
-              addTaskColback(newTitelText);
+              Provider.of<TasksData>(context, listen: false)
+                  .addtask(newTitelText!);
+              Navigator.pop(context);
             },
             child: Text('data'),
           )

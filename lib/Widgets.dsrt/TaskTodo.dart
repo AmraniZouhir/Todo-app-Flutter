@@ -4,11 +4,13 @@ class TaskTodo extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
   final void Function(bool?) checkBoxChange;
+  final void Function() delateTask;
 
   TaskTodo({
     required this.isChecked,
     required this.taskTitle,
     required this.checkBoxChange,
+    required this.delateTask,
   });
 
   @override
@@ -25,6 +27,7 @@ class TaskTodo extends StatelessWidget {
         value: isChecked,
         onChanged: checkBoxChange,
       ),
+      onLongPress: delateTask,
     );
   }
 }

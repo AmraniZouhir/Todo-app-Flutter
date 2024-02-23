@@ -1,26 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/Models/Tasks.dart';
+import 'package:todo_app/Models/TasksData.dart';
 import 'package:todo_app/Scrines/AddTasks.dart';
 import 'package:todo_app/Widgets.dsrt/TasksList.dart';
 
-class TackScrine extends StatefulWidget {
-  const TackScrine({super.key});
-
-  @override
-  State<TackScrine> createState() => _TackScrineState();
-}
-
-class _TackScrineState extends State<TackScrine> {
-  List<Task> tasks = [
-    Task(name: 'sss'),
-    Task(name: 'sddss'),
-    Task(name: 'sfffss'),
-    Task(name: 'sscccs'),
-    Task(name: 'sscccs'),
-    Task(name: 'sscccs'),
-    Task(name: 'sscccs'),
-  ];
-
+class TackScrine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,12 +15,7 @@ class _TackScrineState extends State<TackScrine> {
           showModalBottomSheet(
               context: context,
               builder: (context) => Container(
-                    child: AddTasks((newTitelText) {
-                      setState(() {
-                        tasks.add(Task(name: newTitelText));
-                        Navigator.pop(context);
-                      });
-                    }),
+                    child: AddTasks((newTitelText) {}),
                   ));
         },
         backgroundColor: Color.fromARGB(255, 247, 164, 96),
@@ -67,7 +47,7 @@ class _TackScrineState extends State<TackScrine> {
               ],
             ),
             Text(
-              "${tasks.length} Tasks",
+              "${Provider.of<TasksData>(context).tasks.length} Tasks",
               style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -81,7 +61,7 @@ class _TackScrineState extends State<TackScrine> {
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: TasksList(tasks: tasks),
+                child: TasksList(),
               ),
             ),
             SizedBox(

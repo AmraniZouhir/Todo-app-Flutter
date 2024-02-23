@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/Models/TasksData.dart';
 import 'package:todo_app/Scrines/TackScrine.dart';
 
 void main() {
@@ -10,8 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: TackScrine(),
+    return ChangeNotifierProvider(
+      //ChangeNotifierProvider hadi hya likatfr9 dik data 3la ga3 les intirface liththa
+      create: (context) => TasksData(),
+      child: MaterialApp(
+        home: TackScrine(),
+      ),
     );
   }
 }

@@ -3,4 +3,8 @@ class Task {
   late bool isDone;
 
   Task({required this.name, this.isDone = false});
+
+  void doneChanged() {
+    isDone = !isDone;
+  }
 }
